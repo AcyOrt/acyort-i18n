@@ -108,6 +108,7 @@ module.exports = {
 						"foo": "bar"
 					},
 					"%s cat": {
+						"zero": "no cats",
 						"one": "%s cat",
 						"other": "%s cats"
 					}
@@ -119,7 +120,7 @@ module.exports = {
 
 		assert.equal('Hallo', i18n.__('Hallo'));
 		assert.equal('bar', i18n.__('nested.foo'));
-		assert.equal('0 cat', i18n.__n('%s cat', 0));
+		assert.equal('no cats', i18n.__n('%s cat', 0));
 		assert.equal('1 cat', i18n.__n('%s cat', 1));
 		assert.equal('2 cats', i18n.__n('%s cat', 2));
 	},
@@ -178,6 +179,5 @@ module.exports = {
 
 		// Remove the new string
 		delete i18n.locales['en'][testString];
-		i18n.writeFile('en');
 	}
 };

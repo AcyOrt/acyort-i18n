@@ -7,7 +7,7 @@ module.exports = {
 	'check set/getLocale': function () {
 		var i18n = new I18n({
 			locales: ['en', 'de'],
-			directory: './testlocales',
+			directory: './locales',
 			extension: '.json'
 		});
 
@@ -20,7 +20,7 @@ module.exports = {
 	'check singular': function () {
 		var i18n = new I18n({
 			locales: ['en', 'de'],
-			directory: './testlocales',
+			directory: './locales',
 			extension: '.json'
 		});
 
@@ -33,7 +33,7 @@ module.exports = {
     'check setLocale from environment variable': function () {
 		var i18n = new I18n({
 			locales: ['en', 'de'],
-			directory: './testlocales',
+			directory: './locales',
 			extension: '.json'
 		});
 		var defaultLang = process.env.LANG;
