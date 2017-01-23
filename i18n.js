@@ -166,14 +166,16 @@ i18n.prototype = {
 			var count = countOrPlural;
 			msg = this.translate(this.locale, path);
 
-			msg = vsprintf(parseInt(count, 10) > 1 ? msg.other : msg.one, Array.prototype.slice.call(arguments, 1));
+			//msg = vsprintf(parseInt(count, 10) > 1 ? msg.other : msg.one, Array.prototype.slice.call(arguments, 1));
+			msg = vsprintf(this.zeroORoneORother(msg, count), Array.prototype.slice.call(arguments, 1));
 		} else {
 			var singular = pathOrSingular;
 			var plural = countOrPlural;
 			var count = additionalOrCount;
 			msg = this.translate(this.locale, singular, plural);
 
-			msg = vsprintf(parseInt(count, 10) > 1 ? msg.other : msg.one, [count]);
+			//msg = vsprintf(parseInt(count, 10) > 1 ? msg.other : msg.one, [count]);
+			msg = vsprintf(this.zeroORoneORother(msg, count), [count]);
 
 			if (arguments.length > 3) {
 				msg = vsprintf(msg, Array.prototype.slice.call(arguments, 3));
@@ -181,6 +183,16 @@ i18n.prototype = {
 		}
 
 		return msg;
+	},
+
+	zeroORoneORother(msg, count) {
+		if (!count) {
+			return msg.zero
+		}
+		if (count == 1) {
+			return msg.one
+		}
+		return msg.other
 	},
 
 	setLocale: function (locale) {
@@ -333,7 +345,6 @@ i18n.prototype = {
 		if (!this.locales[locale][singular]) {
 			if (this.devMode) {
 				dotNotation(this.locales[locale], singular, plural ? { one: singular, other: plural } : undefined);
-				this.writeFile(locale);
 			}
 		}
 
@@ -395,56 +406,7 @@ i18n.prototype = {
 			// unable to read, so intialize that file
 			// locales[locale] are already set in memory, so no extra read required
 			// or locales[locale] are empty, which initializes an empty locale.json file
-			if (!fs.existsSync(file)) {
-				this.writeFile(locale);
-			}
-		}
-	},
-
-	// try writing a file in a created directory
-	writeFile: function (locale) {
-		// don't write new locale information to disk if we're not in dev mode
-		if (!this.devMode) {
-			// Initialize the locale if didn't exist already
-			this.initLocale(locale, {});
-			return;
-		}
-
-		// creating directory if necessary
-		try {
-			fs.lstatSync(this.directory);
-
-		} catch (e) {
-			if (this.devMode) {
-				console.log('creating locales dir in: ' + this.directory);
-			}
-
-			fs.mkdirSync(this.directory, 0755);
-		}
-
-		// Initialize the locale if didn't exist already
-		this.initLocale(locale, {});
-
-		// writing to tmp and rename on success
-		try {
-			var target = this.locateFile(locale),
-					tmp = target + ".tmp";
-
-			fs.writeFileSync(tmp,
-							 this.dump(this.locales[locale], this.indent),
-							 "utf8");
-
-			if (fs.statSync(tmp).isFile()) {
-				fs.renameSync(tmp, target);
-
-			} else {
-				console.error('unable to write locales to file (either ' + tmp +
-						' or ' + target + ' are not writeable?): ');
-			}
-
-		} catch (e) {
-			console.error('unexpected error writing files (either ' + tmp +
-					' or ' + target + ' are not writeable?): ', e);
+			console.error(e)
 		}
 	},
 
