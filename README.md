@@ -2,14 +2,14 @@
 
 Based on i18n-node-2 [i18n-node-2](https://github.com/jeresig/i18n-node-2)
 
-## changes
+### changes
 
-### add `"zero"` support
+> add `"zero"` support
 
 ```js
 {
     'cat': {
-        'zero': no cats,
+        'zero': 'no cats',
         'one': 'one cat',
         'other': '%d cats'
     }
@@ -20,4 +20,4 @@ i18n.__n('cat', 1)  // 'one cat'
 i18n.__n('cat', 8)  // '8 cats'
 ```
 
-### remove `writeFile` 
+> remove `writeFile` 

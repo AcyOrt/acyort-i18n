@@ -2,10 +2,10 @@
   "name": "acyort-i18n",
   "description": "acyort i18n module, based on i18n-node-2",
   "version": "0.1.0",
-  "homepage": "https://github.com/AcyOrt/acyort-i18n",
+  "homepage": "https://github.com/acyortjs/acyort-i18n",
   "repository": {
     "type": "git",
-    "url": "git@github.com:AcyOrt/acyort-i18n.git"
+    "url": "git@github.com:acyortjs/acyort-i18n.git"
   },
   "author": "LoeiFy <loeify@gmail.com>",
   "main": "./index",
