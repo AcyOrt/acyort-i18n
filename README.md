@@ -1,10 +1,12 @@
-# acyort i18n module
+# acyort-i18n
 
-Based on i18n-node-2 [i18n-node-2](https://github.com/jeresig/i18n-node-2)
+[![Build Status](https://travis-ci.org/acyortjs/acyort-i18n.svg?branch=master)](https://travis-ci.org/acyortjs/acyort-i18n)
 
-### changes
+Based on [i18n-node-2](https://github.com/jeresig/i18n-node-2)
 
-> add `"zero"` support
+### Features
+
+Add `"zero"` support
 
 ```js
 {
@@ -19,5 +21,3 @@ i18n.__n('cat', 0)  // 'no cats'
 i18n.__n('cat', 1)  // 'one cat'
 i18n.__n('cat', 8)  // '8 cats'
 ```
-
-> remove `writeFile` 

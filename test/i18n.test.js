@@ -4,9 +4,18 @@ var fs = require('fs'),
 	assert = require('assert'),
 	yaml = require('js-yaml');
 
+var expect = require('expect')
+
 module.exports = {
 	'check version': function () {
 		assert.equal(I18n.version, '0.4.7');
+	},
+
+	'check no exits': function () {
+		function ex() {
+			return new I18n({ locales: ['default'] })
+		}
+		expect(ex).toThrow('Error: ENOENT: no such file or directory, open \'locales/default.js\'')
 	},
 
 	'check set/getLocale': function () {

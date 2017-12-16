@@ -37,7 +37,7 @@ var i18n = module.exports = function (opt) {
 	var self = this;
 
 	// Put into dev or production mode
-	this.devMode = process.env.NODE_ENV !== "production";
+	this.devMode = false;
 
 	// Copy over options
 	for (var prop in opt) {
@@ -222,7 +222,7 @@ i18n.prototype = {
 	setLocaleFromSessionVar: function (req) {
 		req = req || this.request;
 
-		if (!req || !req.session || !req.session[this.sessionVarName]) {		
+		if (!req || !req.session || !req.session[this.sessionVarName]) {
 			return;
 		}
 
@@ -406,7 +406,7 @@ i18n.prototype = {
 			// unable to read, so intialize that file
 			// locales[locale] are already set in memory, so no extra read required
 			// or locales[locale] are empty, which initializes an empty locale.json file
-			console.error(e)
+			throw new Error(e)
 		}
 	},
 
