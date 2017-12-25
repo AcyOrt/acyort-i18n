@@ -67,9 +67,9 @@ var i18n = module.exports = function (opt) {
 	this.setLocale(this.defaultLocale);
 
 	// Check the defaultLocale
-	if (!this.locales[this.defaultLocale]) {
-		console.error("Not a valid default locale.");
-	}
+	// if (!this.locales[this.defaultLocale]) {
+	// 	console.error("Not a valid default locale.");
+	// }
 
 	if (this.request) {
 		if (this.subdomain) {
@@ -406,7 +406,7 @@ i18n.prototype = {
 			// unable to read, so intialize that file
 			// locales[locale] are already set in memory, so no extra read required
 			// or locales[locale] are empty, which initializes an empty locale.json file
-			throw new Error(e)
+			console.error('Unable to read language file')
 		}
 	},
 
