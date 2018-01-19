@@ -12,6 +12,7 @@ var vsprintf = require("sprintf").vsprintf,
 		fs = require("fs"),
 		path = require("path");
 
+var chalk = require('chalk')
 
 function dotNotation (obj, is, value) {
 	if (obj.hasOwnProperty(is)) {
@@ -406,7 +407,7 @@ i18n.prototype = {
 			// unable to read, so intialize that file
 			// locales[locale] are already set in memory, so no extra read required
 			// or locales[locale] are empty, which initializes an empty locale.json file
-			console.error('Unable to read language file')
+			console.log(chalk.blue('\u0069'), 'No language files detected')
 		}
 	},
 
