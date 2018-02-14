@@ -1,7 +1,7 @@
 {
   "name": "acyort-i18n",
-  "description": "AcyOrt i18n module, based on i18n-node-2",
-  "version": "0.1.4",
+  "description": "i18n for AcyOrt, based on i18n-node-2",
+  "version": "1.0.0",
   "homepage": "https://github.com/acyortjs/acyort-i18n",
   "repository": {
     "type": "git",
